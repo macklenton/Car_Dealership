@@ -1,19 +1,35 @@
-import { BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
+import Home from "./features/home/Home";
+import Cars from "./features/cars/pages/Cars";
 import Sidebar from "./components/dashboard/Sidebar";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Sidebar />
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+
+      <Route
+        path="/cars"
+        element={
+          <>
+            <Sidebar />
+            <Cars />
+          </>
+        }
+      />
+
+      <Route
+        path="/cars/:id"
+        element={
+          <>
+            <Sidebar />
+            <div>Vehicle Details Page</div>
+          </>
+        }
+      />
+    </Routes>
   );
-}
-
-export default App;
-import Cars from "./features/cars/pages/Cars";
-
-function App() {
-  return <Cars />;
 }
 
 export default App;
