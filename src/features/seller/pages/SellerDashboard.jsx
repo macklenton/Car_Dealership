@@ -1,0 +1,9 @@
+function SellerDashboard() {
+  return (
+    <div>
+      <h1>SellerDashboard</h1>
+    </div>
+  );
+}
+
+export default SellerDashboard;
