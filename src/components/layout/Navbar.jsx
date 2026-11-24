@@ -52,21 +52,21 @@ function Navbar() {
             Home
           </Link>
           <Link
-            to="/cars"
+            to=""
             onClick={() => setMenuOpen(false)}
             className="block py-1 text-slate-700 hover:text-amber-600"
           >
             Cars
           </Link>
           <Link
-            to="/contact"
+            to=""
             onClick={() => setMenuOpen(false)}
             className="block py-1 text-slate-700 hover:text-amber-600"
           >
             Contact
           </Link>
           <Link
-            to="/login"
+            to=""
             onClick={() => setMenuOpen(false)}
             className="block text-center bg-slate-900 text-white py-2 rounded-lg"
           >

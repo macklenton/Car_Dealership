@@ -298,17 +298,17 @@ function Home() {
                 </Link>
               </li>
               <li>
-                <Link to="/Cars" className="hover:text-white transition">
+                <Link to="" className="hover:text-white transition">
                   Cars
                 </Link>
               </li>
               <li>
-                <Link to="/Login" className="hover:text-white transition">
+                <Link to="" className="hover:text-white transition">
                   Login
                 </Link>
               </li>
               <li>
-                <Link to="/Contact" className="hover:text-white transition">
+                <Link to="" className="hover:text-white transition">
                   Contact
                 </Link>
               </li>
