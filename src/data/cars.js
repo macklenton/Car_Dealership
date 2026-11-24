@@ -1,6 +1,13 @@
 
+import harrierImage from "../assets/images/Harrier.jpg";
+import benzImage from "../assets/images/Benz.jpg";
+import cx5Image from "../assets/images/CX-5.jpg";
+import bmwImage from "../assets/images/BMW M5.jpg";
+import subaruImage from "../assets/images/Subaru.jpg";
+import hondaImage from "../assets/images/Honda Crv.jpg";
+import pradoImage from "../assets/images/Prado.jpg";
+import xtrailImage from "../assets/images/Xtrail.jpg";
 
-    
 const cars = [
   {
     id: 1,
@@ -12,7 +19,7 @@ const cars = [
     transmission: "Automatic",
     fuel: "Petrol",
     status: "Available",
-    image: "src/assets/images/Harrier.jpg",
+    image: harrierImage,
   },
   {
     id: 2,
@@ -24,7 +31,7 @@ const cars = [
     transmission: "Automatic",
     fuel: "Petrol",
     status: "Available",
-    image: "src/assets/images/Benz.jpg",
+    image: benzImage,
   },
   {
     id: 3,
@@ -36,7 +43,7 @@ const cars = [
     transmission: "Automatic",
     fuel: "Diesel",
     status: "Available",
-    image: "src/assets/images/CX-5.jpg",
+    image: cx5Image,
   },
   {
     id: 4,
@@ -48,7 +55,7 @@ const cars = [
     transmission: "Automatic",
     fuel: "Petrol",
     status: "Available",
-    image: "src/assets/images/BMW M5.jpg",
+    image: bmwImage,
   },
   {
     id: 5,
@@ -60,7 +67,7 @@ const cars = [
     transmission: "Automatic",
     fuel: "Petrol",
     status: "Reserved",
-    image: "src/assets/images/Subaru.jpg",
+    image: subaruImage,
   },
   {
     id: 6,
@@ -72,7 +79,7 @@ const cars = [
     transmission: "Automatic",
     fuel: "Petrol",
     status: "Available",
-    image: "src/assets/images/Honda Crv.jpg",
+    image: hondaImage,
   },
   {
     id: 7,
@@ -84,7 +91,7 @@ const cars = [
     transmission: "Automatic",
     fuel: "Diesel",
     status: "Available",
-    image: "src/assets/images/Prado.jpg",
+    image: pradoImage,
   },
   {
     id: 8,
@@ -96,7 +103,7 @@ const cars = [
     transmission: "Automatic",
     fuel: "Petrol",
     status: "Sold",
-    image: "src/assets/images/Xtrail.jpg",
+    image: xtrailImage,
   },
 ];
 
