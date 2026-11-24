@@ -1,21 +1,17 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './features/home/Home';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./features/home/Home";
+import Cars from "./features/cars/pages/Cars";
 
-
-function APP() {
+function App() {
   return (
     <BrowserRouter>
       <Routes>
-       
         <Route path="/" element={<Home />} />
-        {/* Add your teammates' routes here later: */}
-        {/* <Route path="/cars" element={<Cars />} /> */}
-        {/* <Route path="/contact" element={<Contact />} /> */}
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/cars" element={<Cars />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
-export default APP;
+export default App;
