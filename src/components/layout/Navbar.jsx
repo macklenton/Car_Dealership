@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import Cars from '../../features/cars/pages/Cars';
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -16,7 +16,7 @@ function Navbar() {
           <Link to="/" className="text-slate-900 font-semibold">
             Home
           </Link>
-          <Link to="/CarCard" className="hover:text-amber-600 transition">
+          <Link to="/Cars" className="hover:text-amber-600 transition">
             Cars
           </Link>
           <Link to="/contact" className="hover:text-amber-600 transition">

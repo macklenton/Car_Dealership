@@ -1,28 +1,34 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
 import Home from "./features/home/Home";
-import { BrowserRouter } from "react-router-dom";
+import Cars from "./features/cars/pages/Cars";
 import Sidebar from "./components/dashboard/Sidebar";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Sidebar />
-    </BrowserRouter>
-  );
-}
+    <Routes>
+      <Route path="/" element={<Home />} />
 
-export default App;
-import Cars from "./features/cars/pages/Cars";
-import CarCard from "./components/cars/CarCard";
-function App() {
-  return (
-   
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cars" element={<CarCard/>} />
-      </Routes>
-   
+      <Route
+        path="/cars"
+        element={
+          <>
+            <Sidebar />
+            <Cars />
+          </>
+        }
+      />
+
+      <Route
+        path="/cars/:id"
+        element={
+          <>
+            <Sidebar />
+            <div>Vehicle Details Page</div>
+          </>
+        }
+      />
+    </Routes>
   );
 }
 
