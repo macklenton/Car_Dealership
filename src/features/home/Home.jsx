@@ -37,7 +37,12 @@ function Home() {
         <p className="text-slate-200 text-base sm:text-lg max-w-xl">
           
         </p>
-
+        <Link
+          to="/cars"
+          className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-semibold px-6 py-3 rounded-lg transition"
+        >
+         Explore Cars
+        </Link>
     
       </div>
     </div>
