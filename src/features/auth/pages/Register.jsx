@@ -69,7 +69,7 @@ function Register() {
 
         <div className="text-center space-y-1">
           <Link to="/" className="text-2xl font-bold text-slate-900 inline-block">
-            Apex<span className="text-amber-600">Motors</span>
+             <h1 className="text-amber-600">AutoDrive</h1>
           </Link>
 
           <h1 className="text-lg font-semibold text-slate-800 pt-2">
@@ -80,7 +80,6 @@ function Register() {
             Join Apex Motors to book and manage vehicles
           </p>
         </div>
-
         {(localError || error) && (
           <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
             {localError || error}
