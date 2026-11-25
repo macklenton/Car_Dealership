@@ -4,8 +4,7 @@ import Home from "./features/home/Home";
 import Cars from "./features/cars/pages/Cars";
 import Sidebar from "./components/dashboard/Sidebar";
 import CarDetails from "./features/cars/pages/CarDetails";
-import Login from "./features/auth/pages/Login";
-import Register from "./features/auth/pages/Register";
+import CustomerDashboard from "./features/customer/pages/CustomerDashboard";
 
 import CustomerDashboard from "./features/customer/pages/CustomerDashboard";
 import SellerDashboard from "./features/seller/pages/SellerDashboard";
@@ -15,6 +14,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/customer-dashboard" element={<CustomerDashboard/>}/>
 
       <Route
         path="/cars"

@@ -33,36 +33,14 @@ function Navbar() {
           <Link to="/contact" className="hover:text-amber-600">
             Contact
           </Link>
-
-          {isAuthenticated ? (
-            <>
-              <Link
-                to={
-                  user?.role === "seller"
-                    ? "/seller-dashboard"
-                    : "/customer-dashboard"
-                }
-                className="hover:text-amber-600"
-              >
-                Dashboard
-              </Link>
-
-              <Logout />
-            </>
-          ) : (
-            <>
-              <Link to="/login" className="hover:text-amber-600">
-                Sign In
-              </Link>
-
-              <Link
-                to="/register"
-                className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-lg transition"
-              >
-                Register
-              </Link>
-            </>
-          )}
+          <Link to="/customer-dashboard">Dashboard</Link>
+          
+          <Link
+            to="/login"
+            className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-lg transition"
+          >
+            Sign In
+          </Link>
         </nav>
 
         {/* Mobile Menu Toggle */}
