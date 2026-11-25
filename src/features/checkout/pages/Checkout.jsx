@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -14,9 +13,7 @@ function Checkout() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { user, isAuthenticated } = useSelector(
-    (state) => state.auth
-  );
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
 
   // Get the selected car from the Vehicle Details page
   const car = location.state?.car;
@@ -65,7 +62,7 @@ function Checkout() {
     setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
@@ -84,16 +81,28 @@ function Checkout() {
       return;
     }
 
-    // Payment service integration will be added here.
-    setError(
-      "Your details are ready. M-Pesa payment processing has not yet been connected."
-    );
-  };
+    // Temporary simulated order for frontend testing
+    const order = {
+      orderNumber: `ORD-${Date.now()}`,
+      car,
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+      city: formData.city,
+      paymentMethod: formData.paymentMethod,
+      paymentStatus: "Awaiting Confirmation",
+      status: "Received",
+      
+    };
 
+    navigate("/order-success", {
+      state: { order },
+    });
+  };
   return (
     <div className="min-h-screen bg-slate-100 px-4 py-10">
       <div className="mx-auto max-w-6xl">
-
         {/* Page Header */}
         <button
           type="button"
@@ -120,17 +129,14 @@ function Checkout() {
 
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-
             {/* Customer Details */}
             <div className="space-y-6 lg:col-span-2">
-
               <section className="rounded-xl bg-white p-6 shadow-sm">
                 <h2 className="mb-5 text-xl font-bold text-slate-900">
                   Customer Information
                 </h2>
 
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-
                   <div>
                     <label className="mb-2 block text-sm font-medium text-slate-700">
                       Full Name
@@ -178,7 +184,6 @@ function Checkout() {
                       className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100"
                     />
                   </div>
-
                 </div>
               </section>
 
@@ -192,7 +197,6 @@ function Checkout() {
                 </div>
 
                 <div className="space-y-5">
-
                   <div>
                     <label className="mb-2 block text-sm font-medium text-slate-700">
                       Delivery Address
@@ -224,7 +228,6 @@ function Checkout() {
                       className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100"
                     />
                   </div>
-
                 </div>
               </section>
 
@@ -247,9 +250,7 @@ function Checkout() {
                   <Smartphone className="text-green-600" size={26} />
 
                   <div>
-                    <p className="font-semibold text-slate-900">
-                      M-Pesa
-                    </p>
+                    <p className="font-semibold text-slate-900">M-Pesa</p>
                     <p className="text-sm text-slate-500">
                       Pay securely using your mobile phone
                     </p>
@@ -261,7 +262,6 @@ function Checkout() {
                   Your payment will be verified before your order is confirmed.
                 </div>
               </section>
-
             </div>
 
             {/* Order Summary */}
@@ -280,9 +280,7 @@ function Checkout() {
                 )}
               </div>
 
-              <h3 className="text-lg font-bold text-slate-900">
-                {car.name}
-              </h3>
+              <h3 className="text-lg font-bold text-slate-900">{car.name}</h3>
 
               <p className="mt-1 text-sm text-slate-500">
                 {car.year} {car.make || ""}
@@ -298,16 +296,12 @@ function Checkout() {
 
                 <div className="flex justify-between gap-3 text-sm">
                   <span className="text-slate-500">Delivery</span>
-                  <span className="text-slate-500">
-                    To be confirmed
-                  </span>
+                  <span className="text-slate-500">To be confirmed</span>
                 </div>
               </div>
 
               <div className="mb-6 flex items-center justify-between">
-                <span className="font-bold text-slate-900">
-                  Vehicle Total
-                </span>
+                <span className="font-bold text-slate-900">Vehicle Total</span>
 
                 <span className="text-xl font-bold text-amber-600">
                   {formattedPrice}
@@ -325,14 +319,14 @@ function Checkout() {
                 className="flex w-full items-center justify-center gap-2 rounded-lg bg-amber-500 px-5 py-3 font-semibold text-white transition hover:bg-amber-600"
               >
                 <CreditCard size={19} />
-                Continue to Payment
+                Complete Payment
               </button>
 
               <p className="mt-4 text-center text-xs text-slate-400">
-                No payment will be collected until a payment gateway is connected.
+                No payment will be collected until a payment gateway is
+                connected.
               </p>
             </aside>
-
           </div>
         </form>
       </div>
