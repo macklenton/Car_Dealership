@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 function Dashboard() {
-  // Temporary data – we'll connect real data later
+  
   const stats = [
     {
       title: "Total Cars",

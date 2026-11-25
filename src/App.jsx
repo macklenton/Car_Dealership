@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./features/home/Home";
 import Cars from "./features/cars/pages/Cars";
 import Sidebar from "./components/dashboard/Sidebar";
+import CarDetails from "./features/cars/pages/CarDetails";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
         element={
           <>
             <Sidebar />
-            <div>Vehicle Details Page</div>
+            < CarDetails />
           </>
         }
       />
