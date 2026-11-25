@@ -5,6 +5,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/cars" element={<Cars />} />
+      <Route path="/contact" element={<Contact />} />
     </Routes>
   );
 }
