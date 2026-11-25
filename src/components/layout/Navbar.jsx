@@ -8,7 +8,7 @@ function Navbar() {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link to="/" className="text-xl font-bold tracking-tight text-slate-900">
-          <h1 className='text-amber-600'>Legacy Auto Co</h1>
+          <h1 className='text-amber-600'>AutoDrive</h1>
         </Link>
 
         {/* Desktop Links */}
@@ -22,6 +22,7 @@ function Navbar() {
           <Link to="/contact" className="hover:text-amber-600 transition">
             Contact
           </Link>
+          
           <Link
             to="/login"
             className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-lg transition"
