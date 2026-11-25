@@ -1,4 +1,6 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   LayoutDashboard,
   CarFront,
@@ -7,27 +9,78 @@ import {
   ClipboardList,
   MessageSquare,
   BarChart3,
-  LogOut,
+  Settings,
+  Logout,
 } from "lucide-react";
 
+import { logoutUser } from "../../features/auth/authSlice";
+
 function Sidebar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { user } = useSelector((state) => state.auth);
+
   const menuItems = [
-    { name: "Dashboard", path: "/", icon: LayoutDashboard },
-    { name: "Sales", path: "/sales", icon: ShoppingCart },
-    { name: "Customers", path: "/customers", icon: Users },
-    { name: "Messages", path: "/messages", icon: MessageSquare },
+    {
+      name: "Dashboard",
+      path: "/seller-dashboard",
+      icon: LayoutDashboard,
+    },
+    {
+      name: "Cars Inventory",
+      path: "/cars",
+      icon: CarFront,
+    },
+    {
+      name: "Sales",
+      path: "/sales",
+      icon: ShoppingCart,
+    },
+    {
+      name: "Orders",
+      path: "/orders",
+      icon: ClipboardList,
+    },
+    {
+      name: "Customers",
+      path: "/customers",
+      icon: Users,
+    },
+    {
+      name: "Messages",
+      path: "/messages",
+      icon: MessageSquare,
+    },
+    {
+      name: "Reports",
+      path: "/reports",
+      icon: BarChart3,
+    },
+    {
+      name: "Settings",
+      path: "/settings",
+      icon: Settings,
+    },
   ];
 
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate("/login", { replace: true });
+  };
+
   return (
-    <aside className="flex h-screen w-64 flex-col bg-slate-900 px-5 py-6 text-white shadow-xl">
+    <aside className="flex min-h-screen w-64 shrink-0 flex-col bg-slate-900 px-5 py-6 text-white shadow-xl">
 
       {/* Logo */}
-      <div className="mb-10 flex items-center gap-3 px-2">
-        
-
+      <div className="mb-10 px-2">
         <h2 className="text-2xl font-bold tracking-wide text-amber-500">
           AutoDrive
         </h2>
+
+        <p className="mt-1 text-xs text-slate-400">
+          Seller Management
+        </p>
       </div>
 
       {/* Navigation */}
@@ -44,12 +97,12 @@ function Sidebar() {
               <NavLink
                 key={item.name}
                 to={item.path}
-                end={item.path === "/"}
+                end
                 className={({ isActive }) =>
-                  `flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200 ${
+                  `flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition ${
                     isActive
-                      ? "bg-amber-500 text-white shadow-lg shadow-blue-900/30"
-                      : "text-slate-300 hover:bg-amber-600 hover:text-white"
+                      ? "bg-amber-500 text-white shadow-lg"
+                      : "text-slate-300 hover:bg-slate-800 hover:text-white"
                   }`
                 }
               >
@@ -61,23 +114,29 @@ function Sidebar() {
         </nav>
       </div>
 
-      {/* Sidebar Bottom */}
+      {/* Seller Information and Logout */}
       <div className="border-t border-slate-700 pt-5">
-        <button className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-red-400 transition hover:bg-red-500/10 hover:text-red-300">
+
+        <div className="mb-4 rounded-lg bg-slate-800 p-3">
+          <p className="truncate text-sm font-semibold text-white">
+            {user?.name || "Seller Account"}
+          </p>
+
+          <p className="mt-1 text-xs text-slate-400">
+            Seller
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-red-400 transition hover:bg-red-500/10 hover:text-red-300"
+        >
           <LogOut size={20} />
           <span>Logout</span>
         </button>
 
-        <div className="mt-5 rounded-lg bg-slate-800 p-3">
-          <p className="text-xs font-semibold text-white">
-              AutoDrive Seller
-          </p>
-          <p className="mt-1 text-xs text-slate-400">
-            Management Panel
-          </p>
-        </div>
       </div>
-
     </aside>
   );
 }
