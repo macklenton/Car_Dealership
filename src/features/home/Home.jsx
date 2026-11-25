@@ -59,7 +59,7 @@ function Home() {
                 Over a Decade of Honest Automotive Excellence
               </h3>
               <p className="text-slate-600 leading-relaxed">
-               At CAR DEALERSHIP, we believe buying a car should be straightforward, 
+               At AUTO DRIVE, we believe buying a car should be straightforward, 
                transparent, and worry-free. We carefully source verified, low-mileage 
                local units and direct imports, putting every single vehicle through a 
                strict multi-point inspection and history check so you can drive off with
@@ -199,7 +199,7 @@ function Home() {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="text-sm font-semibold uppercase tracking-wider text-amber-600">
-              Legacy Auto Co Advantage
+              AutoDrive Advantage
             </h2>
             <h3 className="text-3xl font-bold text-slate-900 mt-1">
               Why Choose Our Dealership
@@ -287,7 +287,7 @@ function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
           <div className="space-y-3">
             <p className="text-lg font-bold text-amber-400">
-              Legacy Auto Co
+             AUTODRIVE
             </p>
             <p className="leading-relaxed">
               Quality certified vehicles, honest financing, and dependable after-sales service.

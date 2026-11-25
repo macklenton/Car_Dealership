@@ -8,7 +8,7 @@ function Navbar() {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link to="/" className="text-xl font-bold tracking-tight text-slate-900">
-          <h1 className='text-amber-600'>Legacy Auto Co</h1>
+          <h1 className='text-amber-600'>AutoDrive</h1>
         </Link>
 
         {/* Desktop Links */}
