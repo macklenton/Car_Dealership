@@ -111,7 +111,7 @@ function Home() {
               {/* Vehicle Card 1 */}
               <div className="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-sm flex flex-col">
                 <img
-                  src={car3}
+                  src={car1}
                   alt="2024 Toyota Land Cruiser Prado"
                   className="w-full h-52 object-cover"
                 />
@@ -167,7 +167,7 @@ function Home() {
               {/* Vehicle Card 3 */}
               <div className="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-sm flex flex-col">
                 <img
-                  src={car1}
+                  src={car3}
                   alt="2024 Mazda CX-5 Touring"
                   className="w-full h-52 object-cover"
                 />
