@@ -11,10 +11,10 @@ import Login from "./features/auth/pages/Login";
 import Register from "./features/auth/pages/Register";
 
 import CustomerDashboard from "./features/customer/pages/CustomerDashboard";
+import Login from "./features/auth/pages/Login";
 import SellerDashboard from "./features/seller/pages/SellerDashboard";
-
+import Register from "./features/auth/pages/Register";
 import RoleRoute from "./features/auth/RoleRoute";
-
 function App() {
   return (
     <Routes>
@@ -39,13 +39,12 @@ function App() {
         element={
           <>
             <Sidebar />
-            <CarDetails />
+             < CarDetails />
           </>
         }
       />
-
-      {/* Customer Protected Route */}
-      <Route
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} /><Route
         path="/customer-dashboard"
         element={
           <RoleRoute allowedRoles={["customer"]}>
@@ -62,10 +61,7 @@ function App() {
             <SellerDashboard />
           </RoleRoute>
         }
-      />
-
-      {/* Not Found */}
-      <Route
+      /> <Route
         path="*"
         element={<h1 className="text-center text-2xl mt-20">404 - Page Not Found</h1>}
       />
