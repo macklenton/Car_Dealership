@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import cars from "../../../data/cars";
-
+import Logout from "../../auth/pages/Logout";
 function CustomerDashboard() {
   const [activeSection, setActiveSection] = useState("Dashboard");
   const navigate = useNavigate();
