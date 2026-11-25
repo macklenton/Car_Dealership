@@ -13,8 +13,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/customer-dashboard" element={<CustomerDashboard/>}/>
-
+      <Route path="/customer-dashboard" element={<CustomerDashboard />} />
+      <Route path="/contact" element={<Contact />} />
       <Route
         path="/cars"
         element={
@@ -24,18 +24,18 @@ function App() {
           </>
         }
       />
-
       <Route
         path="/cars/:id"
         element={
           <>
             <Sidebar />
-             < CarDetails />
+            <CarDetails />
           </>
         }
       />
       <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} /><Route
+      <Route path="/register" element={<Register />} />
+      <Route
         path="/customer-dashboard"
         element={
           <RoleRoute allowedRoles={["customer"]}>
@@ -43,7 +43,6 @@ function App() {
           </RoleRoute>
         }
       />
-
       {/* Seller Protected Route */}
       <Route
         path="/seller-dashboard"
@@ -52,9 +51,12 @@ function App() {
             <SellerDashboard />
           </RoleRoute>
         }
-      /> <Route
+      />{" "}
+      <Route
         path="*"
-        element={<h1 className="text-center text-2xl mt-20">404 - Page Not Found</h1>}
+        element={
+          <h1 className="text-center text-2xl mt-20">404 - Page Not Found</h1>
+        }
       />
     </Routes>
   );
