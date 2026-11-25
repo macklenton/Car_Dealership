@@ -5,10 +5,10 @@ function CarDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Find the selected car using its ID
+  
   const car = cars.find((item) => item.id === Number(id));
 
-  // Handle invalid car IDs
+  
   if (!car) {
     return (
       <div className="min-h-screen bg-gray-100 p-10 text-center">
@@ -29,7 +29,7 @@ function CarDetails() {
   const formattedPrice = new Intl.NumberFormat("en-KE").format(car.price);
 
   const handleBuyNow = () => {
-    navigate("/order", {
+    navigate("/checkout", {
       state: { car },
     });
   };
@@ -43,7 +43,7 @@ function CarDetails() {
           to="/cars"
           className="mb-6 inline-block font-semibold text-[#14213d] hover:text-orange-500"
         >
-          ← Back to Cars
+          Back to Cars
         </Link>
 
         <div className="grid overflow-hidden bg-white shadow-lg md:grid-cols-2">
@@ -69,7 +69,7 @@ function CarDetails() {
             </span>
           </div>
 
-          {/* Vehicle information */}
+          
           <div className="p-6 md:p-10">
 
             <p className="text-sm font-bold uppercase tracking-widest text-orange-500">
@@ -90,7 +90,7 @@ function CarDetails() {
               </p>
             </div>
 
-            {/* Specifications */}
+            
             <h2 className="mb-4 mt-7 text-lg font-bold uppercase text-[#14213d]">
               Vehicle Specifications
             </h2>
@@ -135,7 +135,7 @@ function CarDetails() {
 
             </div>
 
-            {/* Buy button */}
+            
             <button
               onClick={handleBuyNow}
               disabled={car.status !== "Available"}
