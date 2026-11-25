@@ -128,7 +128,7 @@ function Home() {
                     </p>
                   </div>
                   <Link
-                    to="/cars"
+                    to="/cars/7"
                     className="block text-center bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium py-2.5 rounded-lg transition"
                   >
                     View Details
@@ -156,7 +156,7 @@ function Home() {
                     </p>
                   </div>
                   <Link
-                    to="/cars"
+                    to="/cars/2"
                     className="block text-center bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium py-2.5 rounded-lg transition"
                   >
                     View Details
@@ -184,7 +184,7 @@ function Home() {
                     </p>
                   </div>
                   <Link
-                    to="/cars"
+                    to="/cars/3"
                     className="block text-center bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium py-2.5 rounded-lg transition"
                   >
                     View Details

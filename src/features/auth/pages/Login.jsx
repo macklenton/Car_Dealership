@@ -125,6 +125,12 @@ function Login() {
           >
             Create an account
           </Link>
+           <Link
+              to="/"
+              className="text-slate-500 hover:text-slate-800 font-medium hover:underline ml-5"
+            >
+               Back to Home
+            </Link>
         </p>
 
       </div>
