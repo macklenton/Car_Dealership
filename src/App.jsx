@@ -14,7 +14,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/customer-dashboard" element={<CustomerDashboard />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/contact" element={<Contact />} /> {/*add route contact route */}
       <Route
         path="/cars"
         element={
