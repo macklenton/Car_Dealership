@@ -7,20 +7,15 @@ import {
   ClipboardList,
   MessageSquare,
   BarChart3,
-  Settings,
   LogOut,
 } from "lucide-react";
 
 function Sidebar() {
   const menuItems = [
     { name: "Dashboard", path: "/", icon: LayoutDashboard },
-    { name: "Cars Inventory", path: "/cars", icon: CarFront },
     { name: "Sales", path: "/sales", icon: ShoppingCart },
-    { name: "Orders", path: "/orders", icon: ClipboardList },
     { name: "Customers", path: "/customers", icon: Users },
     { name: "Messages", path: "/messages", icon: MessageSquare },
-    { name: "Reports", path: "/reports", icon: BarChart3 },
-    { name: "Settings", path: "/settings", icon: Settings },
   ];
 
   return (
@@ -75,7 +70,7 @@ function Sidebar() {
 
         <div className="mt-5 rounded-lg bg-slate-800 p-3">
           <p className="text-xs font-semibold text-white">
-            AutoDrive Admin
+              AutoDrive Seller
           </p>
           <p className="mt-1 text-xs text-slate-400">
             Management Panel
