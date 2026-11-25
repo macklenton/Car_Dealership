@@ -10,7 +10,7 @@ import {
   MessageSquare,
   BarChart3,
   Settings,
-  Logout,
+  LogOut,
 } from "lucide-react";
 
 import { logoutUser } from "../../features/auth/authSlice";

@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { loginUser, clearAuthError } from "../authSlice";
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { isAuthenticated, user, error, loading } = useSelector(
     (state) => state.auth
@@ -26,9 +27,11 @@ function Login() {
           ? "/seller-dashboard"
           : "/customer-dashboard";
 
-      navigate(destination, { replace: true });
+      navigate(destination, { replace: true, 
+        state: location.state?.from?.state,
+      });
     }
-  }, [isAuthenticated, user, navigate]);
+  }, [isAuthenticated, user, navigate, location]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

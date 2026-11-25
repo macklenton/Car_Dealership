@@ -29,7 +29,7 @@ function CarDetails() {
   const formattedPrice = new Intl.NumberFormat("en-KE").format(car.price);
 
   const handleBuyNow = () => {
-    navigate("/order", {
+    navigate("/checkout", {
       state: { car },
     });
   };
