@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-
+{/*add route */}
 function Contact() {
   const [formData, setFormData] = useState({
     name: "",
