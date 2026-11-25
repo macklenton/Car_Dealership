@@ -22,6 +22,7 @@ function Navbar() {
           <Link to="/contact" className="hover:text-amber-600 transition">
             Contact
           </Link>
+          
           <Link
             to="/login"
             className="bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-lg transition"
