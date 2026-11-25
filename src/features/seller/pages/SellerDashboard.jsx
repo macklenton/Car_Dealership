@@ -13,7 +13,7 @@ import {
 import Sidebar from "../../../components/dashboard/Sidebar";
 
 function SellerDashboard() {
-  // Sample dashboard data for the frontend prototype
+  
   const stats = [
     {
       title: "Total Cars",
