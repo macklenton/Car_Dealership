@@ -84,6 +84,8 @@ function Checkout() {
     // Temporary simulated order for frontend testing
     const order = {
       orderNumber: `ORD-${Date.now()}`,
+      customerId: user?.id,
+      customerEmail: user?.email,
       car,
       fullName: formData.fullName,
       email: formData.email,
@@ -93,8 +95,17 @@ function Checkout() {
       paymentMethod: formData.paymentMethod,
       paymentStatus: "Awaiting Confirmation",
       status: "Received",
-      
+      orderDate: new Date().toISOString(),
     };
+    // Get existing orders
+    const existingOrders = JSON.parse(
+      localStorage.getItem("autodrive_orders") || "[]",
+    );
+
+    // Save the new order
+    const updatedOrders = [...existingOrders, order];
+
+    localStorage.setItem("autodrive_orders", JSON.stringify(updatedOrders));
 
     navigate("/order-success", {
       state: { order },
