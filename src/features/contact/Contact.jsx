@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Send, Clock, MessageSquare } from "lucide-react";
-
+import Navbar from "../../components/layout/Navbar";
 function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -75,6 +75,7 @@ function Contact() {
 
   return (
     <div className="min-h-screen flex-1 bg-slate-100 p-5 md:p-8">
+      <Navbar />
       {/* Page Header */}
       <div className="mb-8">
         <span className="text-sm font-semibold uppercase tracking-widest text-amber-600">
