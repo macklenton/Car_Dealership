@@ -324,8 +324,8 @@ function Home() {
           <div className="space-y-2">
             <p className="font-semibold text-white">Contact Info</p>
             <p>Mombasa Road Showroom, Nairobi</p>
-            <p>Phone: +254 700 123 456</p>
-            <p>Email: legacyauto.co.ke</p>
+            <p>Phone: +254 700 000 000</p>
+            <p>Email: AutoDrive.co.ke</p>
           </div>
 
           <div className="space-y-2">
