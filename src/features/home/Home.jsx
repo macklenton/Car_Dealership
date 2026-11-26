@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import heroImg from '../../assets/hero-img.jpg';
 import Navbar from '../../components/layout/Navbar';
-import car1 from '../../assets/car1.jpg';
-import car2 from '../../assets/car2.jpg';
-import car3 from '../../assets/car3.jpg';
+
+import cx5Image from "../../assets/images/CX-5.jpg";
+import benzImage from "../../assets/images/Benz.jpg";
+import pradoImage from "../../assets/images/Prado.jpg";
 
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -111,7 +112,7 @@ function Home() {
               {/* Vehicle Card 1 */}
               <div className="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-sm flex flex-col">
                 <img
-                  src={car1}
+                  src={pradoImage}
                   alt="2024 Toyota Land Cruiser Prado"
                   className="w-full h-52 object-cover"
                 />
@@ -121,7 +122,7 @@ function Home() {
                       <h4 className="text-lg font-bold text-slate-900">
                         2024 Toyota Land Cruiser Prado
                       </h4>
-                      <span className="text-base font-bold text-amber-600">KSH 4.5M</span>
+                      <span className="text-base font-bold text-amber-600">KSH 7.8M</span>
                     </div>
                     <p className="text-xs text-slate-500 mt-2">
                       12,000 km • Diesel • Automatic
@@ -139,7 +140,7 @@ function Home() {
               {/* Vehicle Card 2 */}
               <div className="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-sm flex flex-col">
                 <img
-                  src={car2}
+                  src={benzImage}
                   alt="2023 Mercedes-Benz C300"
                   className="w-full h-52 object-cover"
                 />
@@ -149,7 +150,7 @@ function Home() {
                       <h4 className="text-lg font-bold text-slate-900">
                         2023 Mercedes-Benz C300
                       </h4>
-                      <span className="text-base font-bold text-amber-600">Ksh 3.5M</span>
+                      <span className="text-base font-bold text-amber-600">Ksh 5.2M</span>
                     </div>
                     <p className="text-xs text-slate-500 mt-2">
                       18,500 km • Petrol • Automatic
@@ -167,7 +168,7 @@ function Home() {
               {/* Vehicle Card 3 */}
               <div className="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-sm flex flex-col">
                 <img
-                  src={car3}
+                  src={cx5Image}
                   alt="2024 Mazda CX-5 Touring"
                   className="w-full h-52 object-cover"
                 />
@@ -177,7 +178,7 @@ function Home() {
                       <h4 className="text-lg font-bold text-slate-900">
                         2024 Mazda CX-5 Touring
                       </h4>
-                      <span className="text-base font-bold text-amber-600">Ksh 1.5M</span>
+                      <span className="text-base font-bold text-amber-600">Ksh 2.95M</span>
                     </div>
                     <p className="text-xs text-slate-500 mt-2">
                       9,400 km • Petrol • Automatic
