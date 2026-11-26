@@ -34,7 +34,6 @@ function App() {
         path="/cars/:id"
         element={
           <>
-            <Sidebar />
             <CarDetails />
           </>
         }
