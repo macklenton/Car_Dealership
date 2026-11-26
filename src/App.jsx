@@ -4,7 +4,6 @@ import Home from "./features/home/Home";
 import Cars from "./features/cars/pages/Cars";
 import CarDetails from "./features/cars/pages/CarDetails";
 import Checkout from "./features/checkout/pages/Checkout";
-import Sidebar from "./components/dashboard/Sidebar";
 import OrderSuccess from "./features/checkout/pages/OrderSuccess";
 import CustomerDashboard from "./features/customer/pages/CustomerDashboard";
 import Login from "./features/auth/pages/Login";
@@ -24,7 +23,6 @@ function App() {
         path="/cars"
         element={
           <>
-           <Sidebar />
     
             <Cars />
           </>
