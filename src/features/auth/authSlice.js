@@ -10,7 +10,7 @@ const readStorage = (key, fallback) => {
   }
 };
 
-const savedUser = readStorage("apex_user", null);
+const savedUser = readStorage("autoDrive_user", null);
 
 const initialState = {
   user: savedUser,
@@ -24,7 +24,7 @@ export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (userData, { rejectWithValue }) => {
     try {
-      const users = readStorage("apex_users", []);
+      const users = readStorage("autoDrive_users", []);
 
       const email = userData.email.trim().toLowerCase();
 
@@ -52,7 +52,7 @@ export const registerUser = createAsyncThunk(
 
       users.push(newUser);
 
-      localStorage.setItem("apex_users", JSON.stringify(users));
+      localStorage.setItem("autoDrive_users", JSON.stringify(users));
 
       const sessionUser = {
         id: newUser.id,
@@ -62,7 +62,7 @@ export const registerUser = createAsyncThunk(
       };
 
       localStorage.setItem(
-        "apex_user",
+        "autoDrive_user",
         JSON.stringify(sessionUser)
       );
 
@@ -78,7 +78,7 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const users = readStorage("apex_users", []);
+      const users = readStorage("autoDrive_users", []);
 
       const matchedUser = users.find(
         (user) =>
@@ -98,7 +98,7 @@ export const loginUser = createAsyncThunk(
       };
 
       localStorage.setItem(
-        "apex_user",
+        "autoDrive_user",
         JSON.stringify(sessionUser)
       );
 
@@ -113,7 +113,7 @@ export const loginUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
   "auth/logoutUser",
   async () => {
-    localStorage.removeItem("apex_user");
+    localStorage.removeItem("autoDrive_user");
     return null;
   }
 );
