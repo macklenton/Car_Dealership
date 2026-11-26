@@ -185,13 +185,12 @@ This project was developed collaboratively, with responsibilities divided among 
 | Mohaa | Seller Dashboard, Customer Dashboard, Contact page and Order page |
 | Project Lead / Contributor | Cars Listing, Vehicle Details and Order Success pages |
 
+### Team Contributions
+
 | Team Member | Contribution | GitHub Branch |
 |---|---|---|
+| Muhammed | Customer and Seller Dashboards | [dashboard](https://github.com/macklenton/Car_Dealership/tree/dashboard) |
+| Brian | Authentication (Home, Login and Registration) | [home/login/reg](https://github.com/macklenton/Car_Dealership/tree/home/login/reg) |
+| David | Car Listing and Payments | [main](https://github.com/macklenton/Car_Dealership/tree/main) |
 
-| Muhammed | Dashboards | [](https://github.com/macklenton/Car_Dealership/tree/dashboard) |
-| Brian | Authentication | []( https://github.com/macklenton/Car_Dealership/tree/home/login/reg) |
-
-| David | Car Listing & Payments | ](https://github.com/macklenton/Car_Dealership/tree/main ) |
-
-**Repository:** [Car Dealership – GitHub](https://github.com/macklenton/Car_Dealership.git)
-
+**Repository:** [Car Dealership – GitHub](https://github.com/macklenton/Car_Dealership)
