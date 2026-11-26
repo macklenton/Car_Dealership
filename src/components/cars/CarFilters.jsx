@@ -77,12 +77,7 @@ function CarFilters({ filters, onFilterChange, onReset }) {
         <option value="Sold">Sold</option>
       </select>
 
-      <button
-        type="button"
-        onClick={onReset}
-        >
-        Reset Filters
-      </button>
+      
     </div>
   );
 }
