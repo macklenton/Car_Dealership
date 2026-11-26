@@ -1,180 +1,346 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import {
   CarFront,
   ShoppingCart,
-  DollarSign,
   Users,
-  Plus,
-  Eye,
-  ClipboardList,
-  TrendingUp,
+  MessageSquare,
 } from "lucide-react";
 
 import Sidebar from "../../../components/dashboard/Sidebar";
+import cars from "../../../data/cars";
 
 function SellerDashboard() {
-  
+  const [searchParams] = useSearchParams();
+
+  const activeSection = searchParams.get("section") || "dashboard";
+
+  const [orders, setOrders] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [customers, setCustomers] = useState([]);
+
+  useEffect(() => {
+    const savedOrders = JSON.parse(
+      localStorage.getItem("autodrive_orders") || "[]"
+    );
+
+    const savedMessages = JSON.parse(
+      localStorage.getItem("autodrive_messages") || "[]"
+    );
+
+    const savedUsers = JSON.parse(
+      localStorage.getItem("autoDrive_users") || "[]"
+    );
+
+    setOrders(savedOrders);
+    setMessages(savedMessages);
+
+    setCustomers(
+      savedUsers.filter((user) => user.role === "customer")
+    );
+  }, []);
+
   const stats = [
     {
       title: "Total Cars",
-      value: "6",
+      value: cars.length,
       icon: CarFront,
       color: "bg-blue-100 text-blue-600",
     },
     {
-      title: "Total Sales",
-      value: "0",
+      title: "Total Orders",
+      value: orders.length,
       icon: ShoppingCart,
       color: "bg-green-100 text-green-600",
     },
     {
-      title: "Total Revenue",
-      value: "KES 4.5M",
-      icon: DollarSign,
+      title: "Customers",
+      value: customers.length,
+      icon: Users,
       color: "bg-purple-100 text-purple-600",
     },
     {
-      title: "Customers",
-      value: "18",
-      icon: Users,
+      title: "Messages",
+      value: messages.length,
+      icon: MessageSquare,
       color: "bg-orange-100 text-orange-600",
     },
   ];
 
-  const recentOrders = [];
+  const formatPrice = (amount) =>
+    `KES ${Number(amount || 0).toLocaleString("en-KE")}`;
+
+  const getCarName = (order) => {
+    const car = order.car;
+
+    if (!car) return "Car details unavailable";
+
+    return (
+      `${car.make || ""} ${car.model || ""}`.trim() ||
+      car.name ||
+      "Car details unavailable"
+    );
+  };
+
+  const OrderTable = ({ orderList }) => (
+    orderList.length === 0 ? (
+      <p className="py-8 text-center text-gray-500">
+        No customer orders found.
+      </p>
+    ) : (
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[650px] text-left">
+          <thead>
+            <tr className="border-b text-sm text-gray-500">
+              <th className="px-4 py-3">Order ID</th>
+              <th className="px-4 py-3">Customer</th>
+              <th className="px-4 py-3">Car</th>
+              <th className="px-4 py-3">Amount</th>
+              <th className="px-4 py-3">Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {orderList.map((order, index) => (
+              <tr
+                key={order.orderNumber || order.id || index}
+                className="border-b last:border-0"
+              >
+                <td className="px-4 py-4 font-medium text-[#14213d]">
+                  {order.orderNumber || order.id || "N/A"}
+                </td>
+
+                <td className="px-4 py-4">
+                  <p className="font-medium text-gray-800">
+                    {order.fullName || "Unknown"}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    {order.email || order.customerEmail || ""}
+                  </p>
+                </td>
+
+                <td className="px-4 py-4 text-gray-700">
+                  {getCarName(order)}
+                </td>
+
+                <td className="px-4 py-4 font-semibold text-gray-800">
+                  {formatPrice(order.car?.price || order.amount)}
+                </td>
+
+                <td className="px-4 py-4">
+                  <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-700">
+                    {order.status || "Received"}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )
+  );
+
+  const pageTitles = {
+    dashboard: "Seller Dashboard",
+    orders: "Customer Orders",
+    customers: "Registered Customers",
+    messages: "Customer Messages",
+  };
 
   return (
     <div className="flex min-h-screen bg-slate-100">
-
-      {/* Seller Sidebar */}
       <Sidebar />
 
-      {/* Main Dashboard Content */}
-      <main className="flex-1 min-w-0 p-6 lg:p-8">
+      <main className="min-w-0 flex-1 p-6 lg:p-8">
 
-        {/* Header */}
+        {/* Page Header */}
         <div className="mb-8">
-          <p className="text-sm font-medium text-amber-600">
-            AUTODRIVE MANAGEMENT
-          </p>
-
-          <h1 className="mt-2 text-3xl font-bold text-slate-900">
-            Seller Dashboard
+          <h1 className="text-3xl font-bold text-[#14213d]">
+            {pageTitles[activeSection] || "Seller Dashboard"}
           </h1>
 
-          <p className="mt-2 text-slate-500">
-            Welcome back! Here's an overview of your dealership.
+          <p className="mt-2 text-gray-500">
+            Manage your dealership and customer activity.
           </p>
         </div>
 
-        {/* Statistics */}
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {stats.map((stat) => {
-            const Icon = stat.icon;
+        {/* Dashboard Overview */}
+        {activeSection === "dashboard" && (
+          <>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+              {stats.map((stat) => {
+                const Icon = stat.icon;
 
-            return (
-              <div
-                key={stat.title}
-                className="rounded-xl bg-white p-6 shadow-sm"
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-slate-500">
-                      {stat.title}
-                    </p>
+                return (
+                  <div
+                    key={stat.title}
+                    className="rounded-xl bg-white p-6 shadow-sm"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-500">
+                          {stat.title}
+                        </p>
+                        <h2 className="mt-2 text-2xl font-bold text-[#14213d]">
+                          {stat.value}
+                        </h2>
+                      </div>
 
-                    <h2 className="mt-2 text-2xl font-bold text-slate-900">
-                      {stat.value}
-                    </h2>
+                      <div className={`rounded-lg p-3 ${stat.color}`}>
+                        <Icon size={24} />
+                      </div>
+                    </div>
                   </div>
+                );
+              })}
+            </div>
 
-                  <div className={`rounded-lg p-3 ${stat.color}`}>
-                    <Icon size={25} />
-                  </div>
+            <section className="mt-8 rounded-xl bg-white p-6 shadow-sm">
+              <div className="mb-6 flex items-center justify-between">
+                <div>
+                  <h2 className="text-xl font-bold text-[#14213d]">
+                    Recent Orders
+                  </h2>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Latest orders submitted by customers.
+                  </p>
                 </div>
+
+                <span className="rounded-lg bg-blue-50 px-3 py-2 text-sm font-semibold text-blue-600">
+                  {orders.length} Orders
+                </span>
               </div>
-            );
-          })}
-        </div>
 
-        
+              <OrderTable orderList={[...orders].reverse().slice(0, 5)} />
+            </section>
+          </>
+        )}
 
-        {/* Recent Orders */}
-        <section className="mt-8 rounded-xl bg-white p-6 shadow-sm">
-
-          <div className="mb-6 flex items-center justify-between">
-            <div>
-              <h2 className="text-xl font-bold text-slate-900">
-                Recent Orders
+        {/* All Orders */}
+        {activeSection === "orders" && (
+          <section className="rounded-xl bg-white p-6 shadow-sm">
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-[#14213d]">
+                All Customer Orders
               </h2>
-
-              <p className="mt-1 text-sm text-slate-500">
-                Overview of your latest customer orders
+              <p className="mt-1 text-sm text-gray-500">
+                View orders submitted by your customers.
               </p>
             </div>
 
-            <Link
-              to="/"
-              className="flex items-center gap-2 text-sm font-semibold text-amber-600 hover:text-amber-700"
-            >
-              View All
-              <Eye size={18} />
-            </Link>
-          </div>
+            <OrderTable orderList={[...orders].reverse()} />
+          </section>
+        )}
 
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[650px] text-left">
-              <thead>
-                <tr className="border-b border-slate-200 text-sm text-slate-500">
-                  <th className="px-4 py-3">Order ID</th>
-                  <th className="px-4 py-3">Customer</th>
-                  <th className="px-4 py-3">Car</th>
-                  <th className="px-4 py-3">Amount</th>
-                  <th className="px-4 py-3">Status</th>
-                </tr>
-              </thead>
+        {/* Customers */}
+        {activeSection === "customers" && (
+          <section className="rounded-xl bg-white p-6 shadow-sm">
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-[#14213d]">
+                Registered Customers
+              </h2>
+              <p className="mt-1 text-sm text-gray-500">
+                Customers registered on AutoDrive.
+              </p>
+            </div>
 
-              <tbody>
-                {recentOrders.map((order) => (
-                  <tr
-                    key={order.id}
-                    className="border-b border-slate-100 text-sm last:border-0"
-                  >
-                    <td className="px-4 py-4 font-semibold text-slate-800">
-                      {order.id}
-                    </td>
+            {customers.length === 0 ? (
+              <p className="py-8 text-center text-gray-500">
+                No registered customers found.
+              </p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[500px] text-left">
+                  <thead>
+                    <tr className="border-b text-sm text-gray-500">
+                      <th className="px-4 py-3">Customer Name</th>
+                      <th className="px-4 py-3">Email Address</th>
+                      <th className="px-4 py-3">Account Type</th>
+                    </tr>
+                  </thead>
 
-                    <td className="px-4 py-4 text-slate-600">
-                      {order.customer}
-                    </td>
-
-                    <td className="px-4 py-4 text-slate-600">
-                      {order.car}
-                    </td>
-
-                    <td className="px-4 py-4 font-medium text-slate-800">
-                      {order.amount}
-                    </td>
-
-                    <td className="px-4 py-4">
-                      <span
-                        className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                          order.status === "Completed"
-                            ? "bg-green-100 text-green-700"
-                            : order.status === "Pending"
-                              ? "bg-yellow-100 text-yellow-700"
-                              : "bg-blue-100 text-blue-700"
-                        }`}
+                  <tbody>
+                    {customers.map((customer) => (
+                      <tr
+                        key={customer.id || customer.email}
+                        className="border-b last:border-0"
                       >
-                        {order.status}
+                        <td className="px-4 py-4 font-medium text-gray-800">
+                          {customer.name}
+                        </td>
+
+                        <td className="px-4 py-4 text-gray-600">
+                          {customer.email}
+                        </td>
+
+                        <td className="px-4 py-4">
+                          <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+                            Customer
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </section>
+        )}
+
+        {/* Messages */}
+        {activeSection === "messages" && (
+          <section className="rounded-xl bg-white p-6 shadow-sm">
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-[#14213d]">
+                Customer Messages
+              </h2>
+              <p className="mt-1 text-sm text-gray-500">
+                Messages submitted through the Contact page.
+              </p>
+            </div>
+
+            {messages.length === 0 ? (
+              <p className="py-8 text-center text-gray-500">
+                No customer messages yet.
+              </p>
+            ) : (
+              <div className="space-y-4">
+                {[...messages].reverse().map((message) => (
+                  <div
+                    key={message.id}
+                    className="rounded-lg border border-gray-200 p-4"
+                  >
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <h3 className="font-semibold text-[#14213d]">
+                          {message.subject}
+                        </h3>
+
+                        <p className="mt-1 text-sm text-gray-500">
+                          {message.name} · {message.email}
+                        </p>
+                      </div>
+
+                      <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-700">
+                        {message.status || "Pending"}
                       </span>
-                    </td>
-                  </tr>
+                    </div>
+
+                    <p className="mt-3 text-sm leading-6 text-gray-600">
+                      {message.message}
+                    </p>
+
+                    <p className="mt-3 text-xs text-gray-400">
+                      {message.date
+                        ? new Date(message.date).toLocaleString()
+                        : "Date unavailable"}
+                    </p>
+                  </div>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+              </div>
+            )}
+          </section>
+        )}
 
       </main>
     </div>

@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,11 +9,11 @@ import {
   LogOut,
   Trash2,
   ArrowRight,
+  MessageSquare,
 } from "lucide-react";
 
 import cars from "../../../data/cars";
 import { logoutUser } from "../../auth/authSlice";
-
 function CustomerDashboard() {
   const [activeSection, setActiveSection] = useState("Dashboard");
   const [orders, setOrders] = useState([]);
@@ -30,6 +29,7 @@ function CustomerDashboard() {
     { name: "Explore Cars", icon: CarFront },
     { name: "My Wishlist", icon: Heart },
     { name: "My Orders", icon: ShoppingBag },
+    { name: "Contact", icon: MessageSquare },
   ];
 
   // Format prices in Kenyan Shillings
@@ -52,21 +52,17 @@ function CustomerDashboard() {
     // Load customer wishlist
     const wishlistKey = `autodrive_wishlist_${user.id}`;
 
-    const savedWishlist = JSON.parse(
-      localStorage.getItem(wishlistKey) || "[]"
-    );
+    const savedWishlist = JSON.parse(localStorage.getItem(wishlistKey) || "[]");
 
     const savedCars = cars.filter((car) =>
-      savedWishlist.some(
-        (id) => String(id) === String(car.id)
-      )
+      savedWishlist.some((id) => String(id) === String(car.id)),
     );
 
     setWishlist(savedCars);
 
     // Load customer orders
     const savedOrders = JSON.parse(
-      localStorage.getItem("autodrive_orders") || "[]"
+      localStorage.getItem("autodrive_orders") || "[]",
     );
 
     const customerOrders = savedOrders.filter((order) => {
@@ -74,16 +70,14 @@ function CustomerDashboard() {
         order.customerId != null &&
         String(order.customerId) === String(user.id);
 
-      const orderEmail = (
-        order.customerEmail || order.email || ""
-      ).trim().toLowerCase();
+      const orderEmail = (order.customerEmail || order.email || "")
+        .trim()
+        .toLowerCase();
 
       const userEmail = (user.email || "").trim().toLowerCase();
 
       const matchesEmail =
-        orderEmail !== "" &&
-        userEmail !== "" &&
-        orderEmail === userEmail;
+        orderEmail !== "" && userEmail !== "" && orderEmail === userEmail;
 
       return matchesId || matchesEmail;
     });
@@ -97,23 +91,16 @@ function CustomerDashboard() {
 
     const wishlistKey = `autodrive_wishlist_${user.id}`;
 
-    const savedWishlist = JSON.parse(
-      localStorage.getItem(wishlistKey) || "[]"
-    );
+    const savedWishlist = JSON.parse(localStorage.getItem(wishlistKey) || "[]");
 
     const updatedWishlist = savedWishlist.filter(
-      (id) => String(id) !== String(carId)
+      (id) => String(id) !== String(carId),
     );
 
-    localStorage.setItem(
-      wishlistKey,
-      JSON.stringify(updatedWishlist)
-    );
+    localStorage.setItem(wishlistKey, JSON.stringify(updatedWishlist));
 
     setWishlist((previousWishlist) =>
-      previousWishlist.filter(
-        (car) => String(car.id) !== String(carId)
-      )
+      previousWishlist.filter((car) => String(car.id) !== String(carId)),
     );
   };
 
@@ -121,6 +108,10 @@ function CustomerDashboard() {
   const handleNavigation = (item) => {
     if (item === "Explore Cars") {
       navigate("/cars");
+      return;
+    }
+    if (item === "Contact") {
+      navigate("/contact");
       return;
     }
 
@@ -135,18 +126,14 @@ function CustomerDashboard() {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-
       {/* Sidebar */}
       <aside className="flex w-64 shrink-0 flex-col bg-[#14213d] text-white">
-
         <div className="border-b border-gray-700 p-6">
           <h1 className="text-2xl font-extrabold tracking-wide">
             <span className="text-amber-500">AutoDrive</span>
           </h1>
 
-          <p className="mt-2 text-xs text-gray-400">
-            Customer Dashboard
-          </p>
+          <p className="mt-2 text-xs text-gray-400">Customer Dashboard</p>
         </div>
 
         {/* Navigation */}
@@ -183,12 +170,10 @@ function CustomerDashboard() {
             Logout
           </button>
         </div>
-
       </aside>
 
       {/* Main Content */}
       <main className="min-w-0 flex-1 p-6 md:p-10">
-
         {/* Header */}
         <header className="mb-8">
           <p className="text-sm font-semibold uppercase tracking-widest text-orange-500">
@@ -203,7 +188,6 @@ function CustomerDashboard() {
         {/* Dashboard Overview */}
         {activeSection === "Dashboard" && (
           <div>
-
             <h3 className="text-xl font-bold text-[#14213d]">
               Welcome Back, {user?.name || "Customer"}!
             </h3>
@@ -214,12 +198,9 @@ function CustomerDashboard() {
 
             {/* Statistics */}
             <div className="mt-8 grid gap-6 md:grid-cols-3">
-
               <div className="bg-white p-6 shadow-sm">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm text-gray-500">
-                    Available Cars
-                  </p>
+                  <p className="text-sm text-gray-500">Available Cars</p>
                   <CarFront className="text-orange-500" size={24} />
                 </div>
 
@@ -230,9 +211,7 @@ function CustomerDashboard() {
 
               <div className="bg-white p-6 shadow-sm">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm text-gray-500">
-                    Wishlist Items
-                  </p>
+                  <p className="text-sm text-gray-500">Wishlist Items</p>
                   <Heart className="text-orange-500" size={24} />
                 </div>
 
@@ -243,9 +222,7 @@ function CustomerDashboard() {
 
               <div className="bg-white p-6 shadow-sm">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm text-gray-500">
-                    My Orders
-                  </p>
+                  <p className="text-sm text-gray-500">My Orders</p>
                   <ShoppingBag className="text-orange-500" size={24} />
                 </div>
 
@@ -253,7 +230,6 @@ function CustomerDashboard() {
                   {orders.length}
                 </h3>
               </div>
-
             </div>
 
             {/* Explore Cars */}
@@ -274,14 +250,12 @@ function CustomerDashboard() {
                 <ArrowRight size={18} />
               </Link>
             </div>
-
           </div>
         )}
 
         {/* My Wishlist */}
         {activeSection === "My Wishlist" && (
           <div className="bg-white p-6 shadow-sm md:p-8">
-
             <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h3 className="text-xl font-bold text-[#14213d]">
@@ -303,10 +277,7 @@ function CustomerDashboard() {
 
             {wishlist.length === 0 ? (
               <div className="py-12 text-center">
-                <Heart
-                  size={45}
-                  className="mx-auto mb-4 text-gray-300"
-                />
+                <Heart size={45} className="mx-auto mb-4 text-gray-300" />
 
                 <h4 className="text-lg font-bold text-[#14213d]">
                   Your Wishlist is Empty
@@ -325,13 +296,11 @@ function CustomerDashboard() {
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-
                 {wishlist.map((car) => (
                   <div
                     key={car.id}
                     className="overflow-hidden border border-gray-200 bg-white shadow-sm"
                   >
-
                     <img
                       src={car.image}
                       alt={`${car.make} ${car.model}`}
@@ -339,7 +308,6 @@ function CustomerDashboard() {
                     />
 
                     <div className="p-5">
-
                       <p className="text-xs font-bold uppercase tracking-widest text-orange-500">
                         {car.year} Model
                       </p>
@@ -357,7 +325,6 @@ function CustomerDashboard() {
                       </p>
 
                       <div className="mt-5 flex flex-col gap-3">
-
                         <Link
                           to={`/cars/${car.id}`}
                           className="bg-[#14213d] px-4 py-3 text-center text-sm font-bold uppercase text-white transition hover:bg-orange-500"
@@ -373,32 +340,25 @@ function CustomerDashboard() {
                           <Trash2 size={17} />
                           Remove from Wishlist
                         </button>
-
                       </div>
                     </div>
                   </div>
                 ))}
-
               </div>
             )}
-
           </div>
         )}
 
         {/* My Orders */}
         {activeSection === "My Orders" && (
           <div className="bg-white p-6 shadow-sm md:p-8">
-
             <h3 className="text-xl font-bold text-[#14213d]">
               My Orders ({orders.length})
             </h3>
 
             {orders.length === 0 ? (
               <div className="py-12 text-center">
-                <ShoppingBag
-                  size={45}
-                  className="mx-auto mb-4 text-gray-300"
-                />
+                <ShoppingBag size={45} className="mx-auto mb-4 text-gray-300" />
 
                 <h4 className="text-lg font-bold text-[#14213d]">
                   No Orders Yet
@@ -417,13 +377,11 @@ function CustomerDashboard() {
               </div>
             ) : (
               <div className="mt-6 space-y-5">
-
                 {orders.map((order, index) => (
                   <div
                     key={order.orderNumber || order.id || index}
                     className="flex flex-col gap-5 border border-gray-200 p-5 md:flex-row"
                   >
-
                     {/* Car Image */}
                     {order.car?.image && (
                       <img
@@ -435,10 +393,10 @@ function CustomerDashboard() {
 
                     {/* Order Information */}
                     <div className="min-w-0 flex-1">
-
                       <div className="flex flex-wrap items-center justify-between gap-3">
                         <h4 className="text-lg font-bold text-[#14213d]">
-                          {order.car?.make} {order.car?.model || order.car?.name || "Vehicle"}
+                          {order.car?.make}{" "}
+                          {order.car?.model || order.car?.name || "Vehicle"}
                         </h4>
 
                         <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">
@@ -472,17 +430,13 @@ function CustomerDashboard() {
                             : "Not available"}
                         </p>
                       </div>
-
                     </div>
                   </div>
                 ))}
-
               </div>
             )}
-
           </div>
         )}
-
       </main>
     </div>
   );

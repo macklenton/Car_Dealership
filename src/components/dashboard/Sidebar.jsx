@@ -6,10 +6,7 @@ import {
   CarFront,
   ShoppingCart,
   Users,
-  ClipboardList,
   MessageSquare,
-  BarChart3,
-  Settings,
   LogOut,
 } from "lucide-react";
 
@@ -33,34 +30,19 @@ function Sidebar() {
       icon: CarFront,
     },
     {
-      name: "Sales",
-      path: "/sales",
+      name: "Orders",
+      path: "/seller-dashboard?section=orders",
       icon: ShoppingCart,
     },
     {
-      name: "Orders",
-      path: "/orders",
-      icon: ClipboardList,
-    },
-    {
       name: "Customers",
-      path: "/customers",
+      path: "/seller-dashboard?section=customers",
       icon: Users,
     },
     {
       name: "Messages",
-      path: "/messages",
+      path: "/seller-dashboard?section=messages",
       icon: MessageSquare,
-    },
-    {
-      name: "Reports",
-      path: "/reports",
-      icon: BarChart3,
-    },
-    {
-      name: "Settings",
-      path: "/settings",
-      icon: Settings,
     },
   ];
 
@@ -97,7 +79,7 @@ function Sidebar() {
               <NavLink
                 key={item.name}
                 to={item.path}
-                end
+                end={item.name === "Dashboard"}
                 className={({ isActive }) =>
                   `flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition ${
                     isActive
@@ -116,7 +98,6 @@ function Sidebar() {
 
       {/* Seller Information and Logout */}
       <div className="border-t border-slate-700 pt-5">
-
         <div className="mb-4 rounded-lg bg-slate-800 p-3">
           <p className="truncate text-sm font-semibold text-white">
             {user?.name || "Seller Account"}
@@ -135,7 +116,6 @@ function Sidebar() {
           <LogOut size={20} />
           <span>Logout</span>
         </button>
-
       </div>
     </aside>
   );
