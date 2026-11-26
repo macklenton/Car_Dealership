@@ -14,7 +14,7 @@ function Cars() {
     year: "All",
     transmission: "All",
     fuel: "All",
-    status: "Available",
+    status: "All",
   };
 
   const [filters, setFilters] = useState(initialFilters);
