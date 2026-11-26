@@ -188,10 +188,10 @@ This project was developed collaboratively, with responsibilities divided among 
 | Team Member | Contribution | GitHub Branch |
 |---|---|---|
 
-| Muhammed | UI Styling | [feature/styling](https://github.com/macklenton/Car_Dealership/dashboard) |
-| Brian | Authentication | [authentication](https://github.com/macklenton/Car_Dealership/home/login/reg) |
+| Muhammed | Dashboards | [](https://github.com/macklenton/Car_Dealership/tree/dashboard) |
+| Brian | Authentication | []( https://github.com/macklenton/Car_Dealership/tree/home/login/reg) |
 
-| David | Performance Optimization and CSS Styling | [feature/Performance](https://github.com/Royklay/team-task-manager/tree/feature/Performance) |
+| David | Car Listing & Payments | ](https://github.com/macklenton/Car_Dealership/tree/main ) |
 
 **Repository:** [Car Dealership – GitHub](https://github.com/macklenton/Car_Dealership.git)
 
