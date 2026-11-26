@@ -77,7 +77,7 @@ function Register() {
           </h1>
 
           <p className="text-sm text-slate-500">
-            Join Apex Motors to book and manage vehicles
+            Join AutoDrive to book and manage vehicles
           </p>
         </div>
         {(localError || error) && (
@@ -100,7 +100,7 @@ function Register() {
                 setName(e.target.value);
                 setLocalError("");
               }}
-              placeholder="Jane Doe"
+              placeholder="Your Name"
               required
               className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
             />
