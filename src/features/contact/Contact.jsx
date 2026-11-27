@@ -1,14 +1,6 @@
-
 import { useState } from "react";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  Clock,
-  MessageSquare,
-} from "lucide-react";
-
+import { Mail, Phone, MapPin, Send, Clock, MessageSquare } from "lucide-react";
+import Navbar from "../../components/layout/Navbar";
 function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -27,11 +19,26 @@ function Contact() {
 
     setSubmitted(false);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Contact Message:", formData);
+    const newMessage = {
+      id: Date.now(),
+      name: formData.name.trim(),
+      email: formData.email.trim().toLowerCase(),
+      subject: formData.subject.trim(),
+      message: formData.message.trim(),
+      status: "Pending",
+      date: new Date().toISOString(),
+    };
+
+    const existingMessages = JSON.parse(
+      localStorage.getItem("autodrive_messages") || "[]",
+    );
+
+    const updatedMessages = [...existingMessages, newMessage];
+
+    localStorage.setItem("autodrive_messages", JSON.stringify(updatedMessages));
 
     setSubmitted(true);
 
@@ -68,7 +75,7 @@ function Contact() {
 
   return (
     <div className="min-h-screen flex-1 bg-slate-100 p-5 md:p-8">
-
+      <Navbar />
       {/* Page Header */}
       <div className="mb-8">
         <span className="text-sm font-semibold uppercase tracking-widest text-amber-600">
@@ -86,21 +93,16 @@ function Contact() {
 
       {/* Main Content */}
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-
         {/* Contact Information */}
         <div className="rounded-2xl bg-slate-900 p-7 text-white shadow-lg">
-
-          <h2 className="text-2xl font-bold">
-            Get in Touch
-          </h2>
+          <h2 className="text-2xl font-bold">Get in Touch</h2>
 
           <p className="mt-3 text-sm leading-6 text-slate-400">
-            Our team is ready to help you with your dealership enquiries
-            and customer support needs.
+            Our team is ready to help you with your dealership enquiries and
+            customer support needs.
           </p>
 
           <div className="mt-10 space-y-8">
-
             {contactInfo.map((item, index) => {
               const Icon = item.icon;
 
@@ -111,38 +113,29 @@ function Contact() {
                   </div>
 
                   <div>
-                    <h3 className="font-semibold text-white">
-                      {item.title}
-                    </h3>
+                    <h3 className="font-semibold text-white">{item.title}</h3>
 
-                    <p className="mt-1 text-sm text-slate-400">
-                      {item.detail}
-                    </p>
+                    <p className="mt-1 text-sm text-slate-400">{item.detail}</p>
                   </div>
                 </div>
               );
             })}
-
           </div>
 
           <div className="mt-12 rounded-xl border border-slate-700 bg-slate-800 p-5">
             <MessageSquare className="mb-3 text-amber-500" size={28} />
 
-            <h3 className="font-semibold">
-              We're Here to Help
-            </h3>
+            <h3 className="font-semibold">We're Here to Help</h3>
 
             <p className="mt-2 text-sm leading-6 text-slate-400">
-              Your satisfaction matters to us. Reach out whenever you
-              need assistance.
+              Your satisfaction matters to us. Reach out whenever you need
+              assistance.
             </p>
           </div>
-
         </div>
 
         {/* Contact Form */}
         <div className="rounded-2xl bg-white p-7 shadow-lg lg:col-span-2">
-
           <h2 className="text-2xl font-bold text-slate-900">
             Send Us a Message
           </h2>
@@ -158,10 +151,8 @@ function Contact() {
           )}
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-
             {/* Name and Email */}
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-
               <div>
                 <label className="mb-2 block text-sm font-semibold text-slate-700">
                   Full Name
@@ -193,7 +184,6 @@ function Contact() {
                   className="w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-amber-500 focus:ring-2 focus:ring-amber-100"
                 />
               </div>
-
             </div>
 
             {/* Subject */}
@@ -238,13 +228,9 @@ function Contact() {
               <Send size={18} />
               Send Message
             </button>
-
           </form>
-
         </div>
-
       </div>
-
     </div>
   );
 }
